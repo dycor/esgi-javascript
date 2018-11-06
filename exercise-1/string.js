@@ -43,9 +43,9 @@ const leet = function (str){
   }
 
   str = str.toLowerCase();
-  for (key in str) {
-    console.log(key)
-    str.toLowerCase().replace(key,cryp[key]);
+  for (i in keys = Object.keys(cryp)) {
+    console.log(cryp[keys[i]])
+    str.replace('/'+keys[i]+'/g',cryp[keys[i]]);
   }
 
   return str;
@@ -62,6 +62,7 @@ const prop_access = function (str){
 const verlan = function (str){
   if(typeof (str) !== "string")
     return "";
+  console.log(str.split())
   return str.split("").reverse().join("");
 };
 
@@ -69,7 +70,7 @@ const verlan = function (str){
 const yoda = function (str){
   if(typeof (str) !== "string")
     return "";
-  return str.split(" ").reverse().join(" ");
+  return str.split(" ").reverse().join(" ").reverse();
 };
 
 //vig
@@ -80,4 +81,4 @@ const vig = function (str){
 };
 
 
-console.log(leet(str));
+console.log(verlan(str));
