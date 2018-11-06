@@ -1,5 +1,6 @@
 //ucfirst
 var str = "Hello it's Dylan";
+// var str = "yoda m Luke";
 
 const ucfirst = function(str) {
   if(typeof (str) !== "string")
@@ -40,14 +41,13 @@ const leet = function (str){
     o:"0",
     u:"(_)",
     y:"7"
-  }
+  };
 
   str = str.toLowerCase();
   for (i in keys = Object.keys(cryp)) {
-    console.log(cryp[keys[i]])
-    str.replace('/'+keys[i]+'/g',cryp[keys[i]]);
+    var regExp = new RegExp(eval('/'+keys[i]+'/g'));
+    str = str.replace(regExp,cryp[keys[i]]);
   }
-
   return str;
 
 };
@@ -62,7 +62,6 @@ const prop_access = function (str){
 const verlan = function (str){
   if(typeof (str) !== "string")
     return "";
-  console.log(str.split())
   return str.split("").reverse().join("");
 };
 
@@ -70,7 +69,7 @@ const verlan = function (str){
 const yoda = function (str){
   if(typeof (str) !== "string")
     return "";
-  return str.split(" ").reverse().join(" ").reverse();
+  return str.split(" ").reverse().join(" ");
 };
 
 //vig
@@ -81,4 +80,4 @@ const vig = function (str){
 };
 
 
-console.log(verlan(str));
+console.log(leet(str));
