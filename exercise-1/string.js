@@ -43,9 +43,9 @@ const leet = function (str){
   }
 
   str = str.toLowerCase();
-  for (property in str) {
-    console.log(property)
-    str.toLowerCase().replace(property,cryp[property]);
+  for (key in str) {
+    console.log(key)
+    str.toLowerCase().replace(key,cryp[key]);
   }
 
   return str;
