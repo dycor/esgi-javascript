@@ -24,8 +24,13 @@ const type_check_v2 = function(val,condition) {
   if(condition.type)
     verified = verified && type_check_v1(val,condition.type);
 
-  if(condition.value)
+  if(condition.value){
+    if(typeof (val) === "object") {
+      return JSON.stringify(val) === JSON.stringify(condition.value);
+    }
+  } else {
     verified = verified && (val === condition.value);
+  }
 
   if(condition.enum){
     var found =false;
