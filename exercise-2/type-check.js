@@ -9,9 +9,6 @@ const type_check_v1 = function(val,type) {
   if(type === "array") {
       return Array.isArray(val);
   }
-  //
-  // if(type === "function")
-  //   return val && {}.toString.call(val) === '[object Function]';
 
   if(type === "object")
     if(Array.isArray(val))
@@ -21,28 +18,35 @@ const type_check_v1 = function(val,type) {
 };
 
 const type_check_v2 = function(val,condition) {
-  if(type_check_v1(val,"object")){
 
-  } else {
-    var verified = true;
+  var verified = true;
 
-    if(condition.type)
-      verified = verified && type_check_v1(val,condition.type);
+  if(condition.type)
+    verified = verified && type_check_v1(val,condition.type);
 
-    if(condition.value)
-      verified = verified & type_check_v1(val,condition.type);
+  if(condition.value)
+    verified = verified && (val === condition.value);
 
-    // if(condition.type)
-    //   verified = verified & type_check_v1(val,condition.type);
+  if(condition.enum){
+    var found =false;
 
+    condition.enum.map(enumVal =>{
+      if(val === enumVal)
+        found = true;
+    });
+    verified = verified && found;
   }
+
+
   return verified;
 };
-console.log(typeof (type_check_v2))
-// console.log(type_check_v2({prop1: 1},{type:"object"}))
-// console.log(type_check_v2("foo",{type:"string",value:"foo"}))
-// console.log(type_check_v2("bar",{type:"string",value:"foo"}))
-// console.log(type_check_v2(3,{enum:["foo","bar",3]}))
+// console.log(typeof (type_check_v2))
+console.log(type_check_v2({prop1: 1},{type:"object"}))
+console.log(type_check_v2("foo",{type:"string",value:"foo"}))
+console.log(type_check_v2("bar",{type:"string",value:"foo"}))
+console.log(type_check_v2(3,{enum:["foo","bar",3]}))
 
-console.log(type_check_v1(type_check_v2,"function"))
+// console.log(type_check_v1(type_check_v2,"function"))
+
+// [1,2,3].map(a => console.log(a))
 // console.log(type_check_v1([1,2,3],"object"))
